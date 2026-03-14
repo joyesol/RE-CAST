@@ -5,7 +5,7 @@ box-sizing:border-box;
 }
 
 body{
-background:black;
+background:#1a1a1a;
 color:white;
 font-family:system-ui;
 }
@@ -252,6 +252,12 @@ border-radius:16px;
   margin: 0 0 4px 0;
 }
 
+.docent-card__desc {
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.5;
+}
+
 
 /* Trending Commentaries Section */
 .trending-scroll {
@@ -268,12 +274,12 @@ border-radius:16px;
 
 .trending-card {
   flex-shrink: 0;
-  width: 158px;
+  width: 139px;
 }
 
 .trending-card__image {
-  width: 158px;
-  height: 233px;
+  width: 139px;
+  height: 181px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 8px; /* Margin under image */
