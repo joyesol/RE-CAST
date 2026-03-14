@@ -220,15 +220,29 @@ padding:20px;
 border-radius:16px;
 }
 
+/* Docent / Cast Analysis Section - Horizontal Scroll Container */
+.docent-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.docent-scroll::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
 /* Docent / Cast Analysis Section - Refined Card UI */
 .docent-card {
   display: flex;
   background: linear-gradient(135deg, #1A1A1A, #242424);
   border-radius: 24px;
-  padding: 20px 24px;
+  padding: 15px;
   gap: 12px;
-  align-items: center; /* Generally better for 2-line content, though flex-start works too */
-  margin: 0 var(--padding-side) 20px; /* 20px bottom margin to space from the header below */
+  align-items: center;
+  flex-shrink: 0;
+  width: 340px; /* Fixed width for scrolling consistency */
 }
 
 .docent-card__actor {
@@ -248,8 +262,15 @@ border-radius:16px;
 .docent-card__title {
   font-size: 18px;
   font-weight: 700; /* Bold */
-  color: var(--text-primary);
-  margin: 0 0 4px 0;
+  color: #fff;
+  margin: 0;
+}
+
+.docent-card__role {
+  font-size: 16px;
+  font-weight: 500;
+  color: #7a3cff;
+  margin: 2px 0 6px 0;
 }
 
 .docent-card__desc {
