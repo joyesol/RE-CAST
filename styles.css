@@ -1,334 +1,458 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-background:#1a1a1a;
-color:white;
-font-family:system-ui;
+body {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
 }
 
-.app{
-max-width:420px;
-margin:auto;
-padding:20px;
+.app {
+  max-width: 420px;
+  margin: auto;
 }
 
-
-/* header */
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:16px; /* 16px margin between header and content */
-}
-
-.header__logo{
-font-size:28px;
-font-weight:700;
-color:#7a3cff;
-}
-
-.header__search{
-width:28px;
-height:28px;
-border-radius:4px;
-border:none;
-background:none; /* cleaner transparent look for icon */
-color:white;
-font-size:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-
-/* section */
-
-.section{
-margin-bottom:40px;
-}
-
-.section__title{
-font-size:22px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-
-
-/* 배너 슬라이더 */
-
-.banner-slider{
-position:relative;
-overflow:hidden;
-width:400px;
-margin:auto;
-}
-
-.banner-slider input{
-display: none;
-}
-
-/* 슬라이드 트랙 */
-
-.banner-track{
-display:flex;
-width:1600px; /* 400px × 4장 */
-transition:0.5s;
-}
-
-/* 포스터 카드 */
-
-.banner{
-width:400px;
-height:380px;
-flex-shrink:0;
-position:relative;
-border-radius:20px;
-overflow:hidden;
-}
-
-/* Gradient overlay */
-.banner::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-height: 50%;
-background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-pointer-events: none;
-}
-
-/* 이미지 */
-
-.banner__image{
-width:400px;
-height:380px;
-object-fit:cover;
-display:block;
-}
-
-.banner__content{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:24px;
-z-index: 2; /* above gradient */
-}
-
-/* 제목 */
-
-.banner__title{
-color:white;
-font-size:30px;
-font-weight:700;
-text-shadow:0 2px 10px rgba(0,0,0,0.6);
-}
-
-.banner__badge{
-background:#7a3cff; /* Purple accent */
-padding:6px 14px;
-border-radius:8px;
-font-size:16px; /* 16px as requested */
-font-weight:600;
-margin-bottom:10px;
-display:inline-block;
-}
-
-/* 슬라이드 이동 */
-
-#slide1:checked ~ .banner-track{
-transform:translateX(0);
-}
-
-#slide2:checked ~ .banner-track{
-transform:translateX(-400px);
-}
-
-#slide3:checked ~ .banner-track{
-transform:translateX(-800px);
-}
-
-#slide4:checked ~ .banner-track{
-transform:translateX(-1200px);
-}
-
-/* 버튼 */
-
-.slider-nav{
-display:flex;
-justify-content:center;
-gap:10px;
-margin-top:12px;
-}
-
-.slider-nav label{
-width:10px;
-height:10px;
-background:#666;
-border-radius:50%;
-cursor:pointer;
-}
-
-#slide1:checked ~ .slider-nav label[for="slide1"],
-#slide2:checked ~ .slider-nav label[for="slide2"],
-#slide3:checked ~ .slider-nav label[for="slide3"],
-#slide4:checked ~ .slider-nav label[for="slide4"] {
-background: #7a3cff;
-}
-
-
-
-/* actors */
-
-.actors{
-display:flex;
-gap:20px;
-overflow-x:auto;
-}
-
-.actors__item{
-text-align:center;
-}
-
-.actors__image{
-width:60px;
-height:60px;
-border-radius:50%;
-object-fit:cover;
-margin-bottom:8px;
-}
-
-.actors__name{
-font-size:14px;
-color:#ccc;
-}
-
-
-
-/* docent */
-
-.docent{
-background:#1c1c1c;
-padding:20px;
-border-radius:16px;
-}
-
-/* Docent / Cast Analysis Section - Horizontal Scroll Container */
-.docent-scroll {
+/* ===== HEADER ===== */
+.header {
   display: flex;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #1a1a1a;
+}
+
+.header__logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #7a3cff;
+  letter-spacing: -0.5px;
+}
+
+.header__search {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== HOME VIEWPORT ===== */
+.home-viewport {
+  display: flex;
   overflow-x: auto;
-  padding: 0 20px 20px;
-  scrollbar-width: none; /* Hide scrollbar Firefox */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 90px;
 }
 
-.docent-scroll::-webkit-scrollbar {
-  display: none; /* Hide scrollbar Chrome/Safari */
+.home-viewport::-webkit-scrollbar { display: none; }
+
+.home-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  padding: 0 20px;
 }
 
-/* Docent / Cast Analysis Section - Refined Card UI */
+/* ===== SECTION ===== */
+.section {
+  margin-bottom: 32px;
+}
+
+.section--banner {
+  padding: 0 0;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.section__title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ===== PLACEHOLDER HELPERS ===== */
+.placeholder-box {
+  background: #2e2e2e;
+  border-radius: 10px;
+  border: 1px solid #383838;
+}
+
+.placeholder-box--sm {
+  width: 60px;
+  height: 74px;
+  background: #2e2e2e;
+  border-radius: 10px;
+  border: 1px solid #383838;
+  flex-shrink: 0;
+}
+
+.placeholder-box--sq {
+  background: #2e2e2e;
+  border-radius: 12px;
+  border: 1px solid #383838;
+}
+
+.placeholder-circle {
+  background: #2e2e2e;
+  border: 1px solid #383838;
+  border-radius: 50%;
+}
+
+/* ===== ① BANNER SLIDER ===== */
+.banner-slider {
+  position: relative;
+}
+
+.banner-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.banner-track::-webkit-scrollbar { display: none; }
+
+.banner {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.banner__placeholder,
+.banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #2e2e2e;
+}
+
+.banner__content {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+}
+
+.banner__sub {
+  font-size: 13px;
+  color: #ccc;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.banner__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 0 20px;
+}
+
+.slider-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #444;
+  transition: all 0.2s;
+}
+
+.slider-dot.active {
+  background: #7a3cff;
+  width: 18px;
+  border-radius: 3px;
+}
+
+/* ===== ② 작품 큐레이션 ===== */
+.section--curation {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 0 20px;
+}
+
+.curation-item {
+  margin-bottom: 24px;
+}
+
+.curation-item__frame {
+  width: 390px;
+  height: 234px;
+  background: #2e2e2e;
+  border: 1px solid #383838;
+  border-radius: 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  width: calc(100% + 40px);
+}
+
+.curation-item__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 42px;
+  background: #222;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 16px;
+  margin-top: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.curation-item__btn:hover {
+  background: #2c2c2c;
+}
+
+/* ===== ③ 해설 보러가기 링크 ===== */
+.section--links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #222;
+  border-radius: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.link-row:hover { background: #2a2a2a; }
+
+.link-row__info {
+  flex: 1;
+}
+
+.link-row__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.link-row__sub {
+  font-size: 13px;
+  color: #888;
+}
+
+.link-row__arrow {
+  font-size: 20px;
+  color: #555;
+}
+
+/* ===== ④ 오늘의 공연 ===== */
+.show-today-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.show-today-scroll::-webkit-scrollbar { display: none; }
+
+.show-today-card {
+  flex-shrink: 0;
+  width: 110px;
+}
+
+.show-today-card__poster {
+  width: 110px;
+  height: 140px;
+  margin-bottom: 8px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.show-today-card__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.show-today-card__cast {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ===== ⑤ 인기 캐스팅 해설 ===== */
+
+/* 포스터 카드 가로 스크롤 */
+.cast-poster-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 20px;
+}
+
+.cast-poster-scroll::-webkit-scrollbar { display: none; }
+
+.cast-poster-card {
+  width: 110px;
+  height: 140px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cast-poster-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cast-poster-card span {
+  position: absolute;
+  z-index: 2;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  pointer-events: none;
+  display: none; /* Hide text if image is present, or keep for accessibility */
+}
+
+.cast-poster-card.active {
+  border: 2px solid #7a3cff;
+  box-shadow: 0 0 10px rgba(122, 60, 255, 0.4);
+}
+
+/* 유저 역할 캡슐 버튼 가로 스크롤 */
+.role-capsule-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+}
+
+.role-capsule-row::-webkit-scrollbar { display: none; }
+
+.role-capsule {
+  flex-shrink: 0;
+  background: #222;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.role-capsule:hover {
+  background: #2a2a2a;
+}
+
+.role-capsule--active {
+  background: #7a3cff;
+  border-color: #7a3cff;
+  color: #fff;
+}
+
+/* 도슨트 해설 카드 */
+.docent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .docent-card {
   display: flex;
-  background: linear-gradient(135deg, #1A1A1A, #242424);
-  border-radius: 24px;
-  padding: 15px;
-  gap: 12px;
   align-items: center;
-  flex-shrink: 0;
-  width: 340px; /* Fixed width for scrolling consistency */
+  gap: 14px;
+  background: #222;
+  border-radius: 20px;
+  padding: 16px;
 }
 
 .docent-card__actor {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 
 .docent-card__content {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.4;
+  flex: 1;
 }
 
 .docent-card__title {
-  font-size: 18px;
-  font-weight: 700; /* Bold */
+  font-size: 15px;
+  font-weight: 700;
   color: #fff;
-  margin: 0;
+  margin-bottom: 3px;
 }
 
 .docent-card__role {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 12px;
   color: #7a3cff;
-  margin: 2px 0 6px 0;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 .docent-card__desc {
-  font-size: 13px;
-  color: #aaa;
-  line-height: 1.5;
-}
-
-
-/* Trending Commentaries Section */
-.trending-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 0 var(--padding-side) 20px;
-  scrollbar-width: none;
-}
-
-.trending-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.trending-card {
-  flex-shrink: 0;
-  width: 139px;
-}
-
-.trending-card__image {
-  width: 139px;
-  height: 181px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 8px; /* Margin under image */
-}
-
-.trending-card__title {
-  font-size: 14px;
-  font-weight: 500; /* Medium */
-  color: var(--text-primary);
-  margin: 0;
+  font-size: 12px;
+  color: #888;
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* Bottom Navigation - Image Refined */
+/* ===== BOTTOM NAV ===== */
 .nav {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); /* Center fixed nav */
-  width: 390px;
-  height: 90px;
-  background: #111111;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+  height: 80px;
+  background: #111;
   display: flex;
-  justify-content: center; /* Use gap and padding for precise spacing */
+  justify-content: space-around;
   align-items: center;
-  gap: 34px; /* Space between icons */
-  padding: 0 16px; /* Side margins */
-  border-top: 1px solid #222222;
+  border-top: 1px solid #222;
   z-index: 100;
 }
 
@@ -336,23 +460,15 @@ border-radius:16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  color: #888888; /* Gray inactive label */
+  gap: 3px;
+  color: #666;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s;
 }
 
 .nav__item--active {
-  color: #7a3cff; /* Purple active label */
+  color: #7a3cff;
 }
 
-.nav__icon {
-  font-size: 20px;
-  margin-bottom: 2px;
-}
-
-.nav__label {
-  font-size: 11px;
-  font-weight: 500;
-}
+.nav__icon { font-size: 20px; }
+.nav__label { font-size: 11px; font-weight: 500; }

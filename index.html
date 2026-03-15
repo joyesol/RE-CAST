@@ -1,234 +1,171 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Re:Cast</title>
-
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re:Cast</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 
 <body class="app">
 
 <header class="header">
-<h1 class="header__logo">RE:CAST</h1>
-<button class="header__search">🔍</button>
+  <h1 class="header__logo">RE:CAST</h1>
+  <button class="header__search">🔍</button>
 </header>
 
+<main class="home-viewport">
+  <div class="home-slide">
 
-<main>
+    <!-- ① 배너 슬라이더 -->
+    <section class="section section--banner">
+      <div class="banner-slider">
+        <div class="banner-track" id="bannerTrack">
 
-<!-- 오늘의 공연 (슬라이드) -->
-<section class="section">
+          <div class="banner">
+            <img src="./images/이미지1.jpeg" class="banner__image" alt="레미제라블">
+            <div class="banner__content">
+              <p class="banner__sub">혁명의 시대 속에서 인간의 존엄을 묻다</p>
+              <h3 class="banner__title">뮤지컬 &lt;레미제라블&gt; ›</h3>
+            </div>
+          </div>
 
-<h2 class="section__title">오늘의 뮤지컬 해설</h2>
+          <div class="banner">
+            <img src="./images/이미지2.jpeg" class="banner__image" alt="킹키부츠">
+            <div class="banner__content">
+              <p class="banner__sub">신발 공장에서 시작된 놀라운 변화</p>
+              <h3 class="banner__title">뮤지컬 &lt;킹키부츠&gt; ›</h3>
+            </div>
+          </div>
 
-<div class="banner-slider">
+          <div class="banner">
+            <img src="./images/이미지3.jpeg" class="banner__image" alt="베르테르">
+            <div class="banner__content">
+              <p class="banner__sub">사랑으로 쓴 마지막 편지</p>
+              <h3 class="banner__title">뮤지컬 &lt;베르테르&gt; ›</h3>
+            </div>
+          </div>
 
-<input type="radio" name="slider" id="slide1" checked>
-<input type="radio" name="slider" id="slide2">
-<input type="radio" name="slider" id="slide3">
-<input type="radio" name="slider" id="slide4">
+        </div>
+        <div class="slider-nav">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+      </div>
+    </section>
 
-<div class="banner-track">
+    <!-- ④ 오늘의 공연 -->
+    <section class="section">
+      <h2 class="section__title">오늘의 공연</h2>
+      <div class="show-today-scroll">
+        <div class="show-today-card">
+          <img src="./images/이미지29.jpeg" class="show-today-card__poster" alt="레베카">
+          <p class="show-today-card__name">레베카</p>
+          <p class="show-today-card__cast">김선영 / 카이</p>
+        </div>
+        <div class="show-today-card">
+          <img src="./images/이미지28.jpeg" class="show-today-card__poster" alt="프랑켄슈타인">
+          <p class="show-today-card__name">프랑켄슈타인</p>
+          <p class="show-today-card__cast">전동석 / 민우혁</p>
+        </div>
+        <div class="show-today-card">
+          <img src="./images/이미지30.jpeg" class="show-today-card__poster" alt="엘리자벳">
+          <p class="show-today-card__name">엘리자벳</p>
+          <p class="show-today-card__cast">옥주현 / 김준수</p>
+        </div>
+      </div>
+    </section>
 
-<!-- 레미제라블 -->
-<div class="banner">
-<img src="./images/이미지1.jpeg" class="banner__image">
-<div class="banner__content">
-<span class="banner__badge">인기</span>
-<h3 class="banner__title">뮤지컬 &lt;레미제라블&gt;</h3>
-</div>
-</div>
+    <!-- ⑤ 인기 캐스팅 해설 -->
+    <section class="section">
+      <h2 class="section__title">인기 캐스팅 해설</h2>
 
-<!-- 킹카부츠 -->
-<div class="banner">
-<img src="./images/이미지2.jpeg" class="banner__image">
-<div class="banner__content">
-<span class="banner__badge">NEW</span>
-<h3 class="banner__title">뮤지컬 &lt;킹키부츠&gt;</h3>
-</div>
-</div>
+      <!-- 포스터 카드 가로 스크롤 -->
+      <div class="cast-poster-scroll">
+        <div class="cast-poster-card active" onclick="updateCastRoles('deathnote')"><img src="./images/이미지17.jpeg" alt="데스노트"></div>
+        <div class="cast-poster-card" onclick="updateCastRoles('werther')"><img src="./images/이미지3.jpeg" alt="베르테르"></div>
+        <div class="cast-poster-card" onclick="updateCastRoles('rebecca')"><img src="./images/이미지29.jpeg" alt="레베카"></div>
+        <div class="cast-poster-card" onclick="updateCastRoles('beetlejuice')"><img src="./images/이미지11.jpeg" alt="비틀쥬스"></div>
+      </div>
 
-<!-- 베르테르 -->
-<div class="banner">
-<img src="./images/이미지3.jpeg" class="banner__image">
-<div class="banner__content">
-<span class="banner__badge">역사</span>
-<h3 class="banner__title">뮤지컬 &lt;베르테르&gt;</h3>
-</div>
-</div>
+      <!-- 유저 역할 캡슐 버튼 가로 스크롤 -->
+      <div class="role-capsule-row" id="roleCapsuleRow">
+        <button class="role-capsule role-capsule--active" onclick="toggleCapsule(this)">야가미 라이토</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">엘</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">렘</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">류크</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">아마네 미사</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">야가미 소이치로</button>
+        <button class="role-capsule" onclick="toggleCapsule(this)">야가미 사유</button>
+      </div>
 
-<!-- 영웅 -->
-<div class="banner">
-<img src="./images/이미지4.jpeg" class="banner__image">
-<div class="banner__content">
-<span class="banner__badge">할인</span>
-<h3 class="banner__title">뮤지컬 &lt;영웅&gt;</h3>
-</div>
-</div>
+      <!-- 해설 카드 (docent style) -->
+      <div class="docent-list">
+        <div class="docent-card">
+          <div class="docent-card__actor placeholder-circle"></div>
+          <div class="docent-card__content">
+            <h3 class="docent-card__title">뮤지컬 &lt;베르테르&gt;</h3>
+            <p class="docent-card__role">양요섭_베르테르 역</p>
+            <p class="docent-card__desc">사랑을 멈출 수 없기에 그는 끝까지 사랑 한다. 운명처럼 시작된 사랑 앞에서 흔들리는 청춘의 감정을 그린다.</p>
+          </div>
+        </div>
+        <div class="docent-card">
+          <div class="docent-card__actor placeholder-circle"></div>
+          <div class="docent-card__content">
+            <h3 class="docent-card__title">뮤지컬 &lt;킹키부츠&gt;</h3>
+            <p class="docent-card__role">김호영_찰리역</p>
+            <p class="docent-card__desc">아버지의 구두 공장을 이어받은 찰리. 롤라와의 만남은 그의 세상을 바꾸고 진짜 자신을 찾는 여정을 시작하게 한다.</p>
+          </div>
+        </div>
+      </div>
 
-</div>
+    </section>
 
-<div class="slider-nav">
-<label for="slide1"></label>
-<label for="slide2"></label>
-<label for="slide3"></label>
-<label for="slide4"></label>
-</div>
+    <!-- ② 작품 큐레이션 -->
+    <section class="section section--curation">
+      <h2 class="section__title">작품 큐레이션</h2>
 
-</div>
+      <!-- 큐레이션 아이템 1 -->
+      <div class="curation-item">
+        <div class="curation-item__frame"></div>
+        <button class="curation-item__btn">해설 보러가기 ›</button>
+      </div>
 
-</section>
+      <!-- 큐레이션 아이템 2 -->
+      <div class="curation-item">
+        <div class="curation-item__frame"></div>
+        <button class="curation-item__btn">해설 보러가기 ›</button>
+      </div>
 
+    </section>
 
-
-<!-- 찜한 배우 -->
-<section class="section">
-
-<h2 class="section__title">찜한 배우</h2>
-
-<div class="actors">
-
-<div class="actors__item">
-<img src="./images/이미지6.jpg" class="actors__image">
-<p class="actors__name">양요섭</p>
-</div>
-
-<div class="actors__item">
-<img src="./images/이미지7.jpeg" class="actors__image">
-<p class="actors__name">최수진</p>
-</div>
-
-<div class="actors__item">
-<img src="./images/이미지9.jpeg" class="actors__image">
-<p class="actors__name">이한율</p>
-</div>
-
-<div class="actors__item">
-<img src="./images/이미지10.jpeg" class="actors__image">
-<p class="actors__name">홍나현</p>
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- 인기 캐스트 해석 -->
-<section class="section section--popular-cast">
-
-<h2 class="section__title">인기 캐스트 해석</h2>
-
-<div class="docent-scroll">
-
-  <!-- 카드 1: 베르테르 -->
-  <div class="docent-card">
-    <img src="./images/이미지6.jpg" class="docent-card__actor">
-    <div class="docent-card__content">
-      <h3 class="docent-card__title">뮤지컬 &lt;베르테르&gt;</h3>
-      <p class="docent-card__role">양요섭_베르테르 역</p>
-      <p class="docent-card__desc">
-        사랑을 멈출 수 없기에 그는 끝까지 사랑 한다.운명처럼 시작된 사랑 앞에서 흔들리는 청춘의 감정을 그린다
-      </p>
-    </div>
-  </div>
-
-  <!-- 카드 2: 킹키부츠 -->
-  <div class="docent-card">
-    <img src="./images/이미지15.jpeg" class="docent-card__actor">
-    <div class="docent-card__content">
-      <h3 class="docent-card__title">뮤지컬 &lt;킹키부츠&gt;</h3>
-      <p class="docent-card__role">김호영_찰리역</p>
-      <p class="docent-card__desc">
-        아버지의 구두 공장을 이어받은 찰리. 롤라와의 만남은 그의 세상을 바꾸고 진짜 자신을 찾는 여정을 시작하게 한다.
-      </p>
-    </div>
-  </div>
-
-  <!-- 카드 3: 레미제라블 -->
-  <div class="docent-card">
-    <img src="./images/이미지16.jpeg" class="docent-card__actor">
-    <div class="docent-card__content">
-      <h3 class="docent-card__title">뮤지컬 &lt;레미제라블&gt;</h3>
-      <p class="docent-card__role">조정은_판틴역</p>
-      <p class="docent-card__desc">
-        비극 속에 놓인 가련한 여인이 아닌, 삶의 무게를 묵묵히 견디며 자신의 길을 끝까지 걸어가는 강인한 인물로 그려진다.
-      </p>
-    </div>
-  </div>
-
-</div>
-
-</section>
-
-
-<!-- 지금 팬들이 많이 보는 해설 -->
-<section class="section">
-
-<h2 class="section__title">지금 팬들이 많이 보는 해설</h2>
-
-<div class="trending-scroll">
-
-<div class="trending-card">
-<img src="./images/이미지11.jpeg" class="trending-card__image">
-<h3 class="trending-card__title">뮤지컬 &lt;비틀쥬스&gt;</h3>
-</div>
-
-<div class="trending-card">
-<img src="./images/이미지12.jpeg" class="trending-card__image">
-<h3 class="trending-card__title">뮤지컬 &lt;여명의 눈동자&gt;</h3>
-</div>
-
-<div class="trending-card">
-<img src="./images/이미지13.jpeg" class="trending-card__image">
-<h3 class="trending-card__title">뮤지컬 &lt;긴긴밤&gt;</h3>
-</div>
-
-<div class="trending-card">
-<img src="./images/이미지14.jpeg" class="trending-card__image">
-<h3 class="trending-card__title">뮤지컬 &lt;난쟁이들&gt;</h3>
-</div>
-
-</div>
-
-</section>
-
-
+  </div><!-- /home-slide -->
 </main>
 
-
 <nav class="nav">
-
   <div class="nav__item nav__item--active">
     <span class="nav__icon">🏠</span>
     <span class="nav__label">홈</span>
   </div>
-
   <div class="nav__item">
     <span class="nav__icon">🎭</span>
     <span class="nav__label">작품</span>
   </div>
-
   <div class="nav__item">
     <span class="nav__icon">🎧</span>
     <span class="nav__label">해설</span>
   </div>
-
   <div class="nav__item">
     <span class="nav__icon">📅</span>
     <span class="nav__label">일정</span>
   </div>
-
   <div class="nav__item">
     <span class="nav__icon">👤</span>
     <span class="nav__label">마이</span>
   </div>
-
 </nav>
 
-
+</body>
+</html>
